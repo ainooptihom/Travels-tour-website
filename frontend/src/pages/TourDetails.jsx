@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 
 import '../styles/tour-details.css';
 import { Container, Row, Col, Form, ListGroup, Button } from 'reactstrap';
@@ -10,6 +10,8 @@ import avatar from '../assets/images/avatar.jpg';
 const TourDetails = () => {
 
   const {id} = useParams();
+  const reviewMsgRef = useRef();
+  const [ tourRating, setTourRating ] = useState(null);
   const tour = tourData.find(tour => tour.id === id);
 
   //destructure properties from tour object
@@ -18,6 +20,14 @@ const TourDetails = () => {
 
   //format Date
   const options = { day : 'numeric', month : 'long', year: 'numeric'};
+
+  //submit reviews to the server
+  const submitHandler = e => {
+    e.preventDefault();
+    const reviewText = reviewMsgRef.current.value;
+
+    // alert(`${tourRating} ${reviewText}`)
+  }
 
   return<>
   <section>
@@ -58,17 +68,17 @@ const TourDetails = () => {
             <div className='tour_reviews mt-4'>
               <h4>Reviews ({reviews?.length} reviews)</h4>
 
-              <Form>
+              <Form onSubmit={submitHandler}>
                 <div className='d-flex align-items-center gap-3 mb-4 rating_group'>
-                  <span> 1 <i class='ri-star-s-fill'></i></span>
-                  <span> 2 <i class='ri-star-s-fill'></i></span>
-                  <span> 3 <i class='ri-star-s-fill'></i></span>
-                  <span> 4 <i class='ri-star-s-fill'></i></span>
-                  <span> 5  <i class='ri-star-s-fill'></i></span>
+                  <span onClick={() => setTourRating(1)}> 1 <i class='ri-star-s-fill'></i></span>
+                  <span onClick={() => setTourRating(2)} > 2 <i class='ri-star-s-fill'></i></span>
+                  <span onClick={() => setTourRating(3)}> 3 <i class='ri-star-s-fill'></i></span>
+                  <span onClick={() => setTourRating(4)}> 4 <i class='ri-star-s-fill'></i></span>
+                  <span onClick={() => setTourRating(5)}> 5  <i class='ri-star-s-fill'></i></span>
                 </div>
 
                 <div className='review_input'>
-                  <input type='text' placeholder='share your thoughts'  />
+                  <input type='text' ref={reviewMsgRef} placeholder='share your thoughts' required />
                   <Button style={{borderColor: 'var(--secondary-color)', backgroundColor: 'white', color : 'var(--secondary-color)'}}>
                    Submit
                 </Button>
@@ -129,6 +139,9 @@ const TourDetails = () => {
             </div>
             {/*====================Tous Review Section End ======================= */}
           </div>
+        </Col>
+        <Col lg='4'>
+          
         </Col>
       </Row>
     </Container>
