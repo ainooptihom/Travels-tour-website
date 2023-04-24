@@ -1,11 +1,11 @@
 import React from 'react';
 
 import '../styles/tour-details.css';
-import { Container, Row, Col, Form, ListGroup } from 'reactstrap';
+import { Container, Row, Col, Form, ListGroup, Button } from 'reactstrap';
 import { useParams } from 'react-router-dom';
 import tourData from '../assets/data/tours';
 import calculateAvgRating from '../utils/avgRating';
-import avatar from '../assets/images/avatar.jpg'
+import avatar from '../assets/images/avatar.jpg';
 
 const TourDetails = () => {
 
@@ -46,7 +46,8 @@ const TourDetails = () => {
               <div className='tour_extra-details'>
                 <span><i class="ri-map-pin-2-line"></i>{city}</span>
                 <span><i class="ri-money-dollar-circle-line"></i>${price} /per person</span>
-                <span><i class="ri-group-line"></i>{maxGroupSize}</span>
+                <span><i class="ri-map-pin-time-line"></i>{distance} k/m </span>
+                <span><i class="ri-group-line"></i>{maxGroupSize} People</span>
               </div>
 
               <h5>Description</h5>
@@ -66,11 +67,11 @@ const TourDetails = () => {
                   <span> 5  <i class='ri-star-s-fill'></i></span>
                 </div>
 
-                <div className='reviews_input'>
+                <div className='review_input'>
                   <input type='text' placeholder='share your thoughts'  />
-                  <button className='btn primary_btn text-white' type='submit'>
-                    Submit
-                  </button>
+                  <Button style={{borderColor: 'var(--secondary-color)', backgroundColor: 'white', color : 'var(--secondary-color)'}}>
+                   Submit
+                </Button>
                 </div>
               </Form>
 
@@ -84,7 +85,7 @@ const TourDetails = () => {
                         <div className='d-flex align-items-center
                         justify-content-between'>
                           <div>
-                            <h5>Muhit</h5>
+                            <h5>Mohit</h5>
                             <p>{
                               new Date("01-18-2023").toLocaleDateString(
                                 "en-US", options
@@ -92,12 +93,35 @@ const TourDetails = () => {
                               </p>
                           </div>
                           <span className='d-flex align-items-center'>
-                            5<i class='ri-stars-s-fill'></i>
+                            5<i class='ri-star-s-fill'></i>
                           </span>
                         </div>
 
                         <h6>Amazing tour</h6>
                       </div>
+
+                      <div className='review_item'>
+                      <img src={avatar} alt='' />
+                      <div className='w-100'>
+                        <div className='d-flex align-items-center
+                        justify-content-between'>
+                          <div>
+                            <h5>Mohit</h5>
+                            <p>{
+                              new Date("01-18-2023").toLocaleDateString(
+                                "en-US", options
+                              )}
+                              </p>
+                          </div>
+                          <span className='d-flex align-items-center'>
+                            5 <i class='ri-star-s-fill'></i>
+                          </span>
+                        </div>
+
+                        <h6>Amazing tour</h6>
+                      </div>
+
+                    </div>
                     </div>
                   ))
                 }
