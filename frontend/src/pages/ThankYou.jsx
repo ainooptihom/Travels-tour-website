@@ -15,8 +15,8 @@ const ThankYou = () => {
                     <h1 className='mb-3 fw-semibold'>Thank You</h1>
                     <h3 className='mb-4'> Your tour is Booked.</h3>
 
-                    <Button>
-                        <Link to='/home'>
+                    <Button style={{backgroundColor: 'var(--secondary-color)', borderColor: 'var(--secondary-color)'}}>
+                        <Link to='/home' style={{color: 'white', textDecoration: 'none'}}>
                             Back To Home
                         </Link>
                     </Button>
